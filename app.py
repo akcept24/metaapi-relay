@@ -10,7 +10,7 @@ import urllib.error
 import urllib.request
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
-UPSTREAM = "https://mt-client-api-v1.london.agiliumtrade.agiliumtrade.ai"
+UPSTREAM = "https://mt-client-api-v1.london.agiliumtrade.ai"
 TOKEN = os.environ.get("METAAPI_TOKEN", "")
 RELAY_KEY = os.environ.get("RELAY_KEY", "")
 PORT = int(os.environ.get("PORT", "8080"))
