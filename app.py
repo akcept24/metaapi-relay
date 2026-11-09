@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """MetaApi relay: forwards signed requests to the MetaApi client API
-(london region) from this server's network. The MetaApi token lives
+(backup-new-york region) from this server's network. The MetaApi token lives
 only in this process's environment. Callers authenticate with
 X-Relay-Key. Request/response bodies are never logged.
 """
@@ -10,7 +10,7 @@ import urllib.error
 import urllib.request
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
-UPSTREAM = "https://mt-client-api-v1.london.agiliumtrade.ai"
+UPSTREAM = "https://mt-client-api-v1.backup-new-york.agiliumtrade.ai"
 TOKEN = os.environ.get("METAAPI_TOKEN", "")
 RELAY_KEY = os.environ.get("RELAY_KEY", "")
 PORT = int(os.environ.get("PORT", "8080"))
