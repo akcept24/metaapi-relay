@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
-"""MetaApi relay: forwards signed requests to the MetaApi client API
-(backup-new-york region) from this server's network. The MetaApi token lives
-only in this process's environment. Callers authenticate with
-X-Relay-Key. Request/response bodies are never logged.
+"""Trading relay: forwards signed requests from this server's network
+to the trading bridge. Since 2026-11-16 the upstream is our own MT4
+terminal bridge (container mt4-shadow on the coolify network); MetaApi
+was retired after its subscription lapsed. UPSTREAM can be overridden
+by env. Callers authenticate with X-Relay-Key. Request/response bodies
+are never logged.
 """
 import json
 import os
@@ -10,7 +12,7 @@ import urllib.error
 import urllib.request
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
-UPSTREAM = "https://mt-client-api-v1.backup-new-york.agiliumtrade.ai"
+UPSTREAM = os.environ.get("UPSTREAM", "http://mt4-shadow:8080")
 TOKEN = os.environ.get("METAAPI_TOKEN", "")
 RELAY_KEY = os.environ.get("RELAY_KEY", "")
 PORT = int(os.environ.get("PORT", "8080"))
